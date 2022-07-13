@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<odoo>
+	<record model="ir.rule" id="mrp.mrp_routing_workcenter_rule">
+        <field name="name">mrp_routing_workcenter multi-company</field>
+        <field name="model_id" search="[('model','=','mrp.routing.workcenter')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+
+    <record model="ir.rule" id="stock.stock_location_comp_rule">
+        <field name="name">Location multi-company</field>
+        <field name="model_id" ref="stock.model_stock_location"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="date_range.date_range_type_comp_rule" model="ir.rule">
+        <field name="name">Date Range Type multi-company</field>
+        <field name="model_id" ref="date_range.model_date_range_type"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="base.res_currency_rate_rule" model="ir.rule">
+	    <field name="name">multi-company currency rate rule</field>
+	    <field name="model_id" ref="base.model_res_currency_rate"/>
+	    <field name="global" eval="True"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+	</record>
+	
+	<record id="account_document.receiptbook_comp_rule" model="ir.rule">
+        <field name="name">Receiptbook Line multi-company</field>
+        <field name="model_id" ref="account_document.model_account_payment_receiptbook"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_location_route_comp_rule">
+        <field name="name">stock_location_route multi-company</field>
+        <field name="model_id" ref="stock.model_stock_location_route"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="l10n_ar_account_withholding.arba_alicuot_comp_rule" model="ir.rule">
+        <field name="name">Arba Alicuot multi-company</field>
+        <field name="model_id" ref="l10n_ar_account_withholding.model_res_partner_arba_alicuot"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_warehouse_orderpoint_rule">
+        <field name="name">stock_warehouse.orderpoint multi-company</field>
+        <field name="model_id" search="[('model','=','stock.warehouse.orderpoint')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.product_pulled_flow_comp_rule">
+        <field name="name">product_pulled_flow multi-company</field>
+        <field name="model_id" ref="stock.model_procurement_rule"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="date_range.date_range_comp_rule" model="ir.rule">
+        <field name="name">Date Range multi-company</field>
+        <field name="model_id" ref="date_range.model_date_range"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_quant_rule">
+        <field name="name">stock_quant multi-company</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="purchase.purchase_order_report_comp_rule">
+        <field name="name">Purchase Order Report multi-company</field>
+        <field name="model_id" ref="purchase.model_purchase_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="l10n_ar_afipws.afipws_certificate_alias_multi_company_rule" model="ir.rule">
+	    <field name="name">Afipws Certificate Alias Multi-company</field>
+	    <field name="model_id" ref="l10n_ar_afipws.model_afipws_certificate_alias"/>
+	    <field eval="True" name="perm_read"/>
+	    <field eval="True" name="perm_write"/>
+	    <field eval="True" name="perm_create"/>
+	    <field eval="True" name="perm_unlink"/>
+	    <field name="domain_force">[('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_move_rule">
+    	<field name="name">stock_move multi-company</field>
+        <field name="model_id" search="[('model','=','stock.move')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|','|',('company_id','=',False),('company_id','in',user.company_ids.ids),('location_dest_id.company_id', '=', False)]</field>
+	</record>
+	
+	<record model="ir.rule" id="sale.sale_order_line_comp_rule">
+        <field name="name">Sales Order Line multi-company</field>
+        <field name="model_id" ref="sale.model_sale_order_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="purchase.purchase_order_line_comp_rule">
+        <field name="name">Purchase Order Line multi-company</field>
+        <field name="model_id" ref="purchase.model_purchase_order_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_inventory_line_comp_rule">
+        <field name="name">Inventory Line multi-company</field>
+        <field name="model_id" ref="stock.model_stock_inventory_line"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="analytic.analytic_line_comp_rule" model="ir.rule">
+        <field name="name">Analytic line multi company rule</field>
+        <field name="model_id" ref="analytic.model_account_analytic_line"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="base.property_rule" model="ir.rule">
+        <field name="name">Property multi-company</field>
+        <field name="model_id" ref="base.model_ir_property"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="report_extended.report_multicompany">
+        <field name="name">Report multi-company</field>
+        <field name="model_id" ref="base.model_ir_actions_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_inventory_comp_rule">
+        <field name="name">Inventory multi-company</field>
+        <field name="model_id" ref="stock.model_stock_inventory"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account.tax_comp_rule" model="ir.rule">
+        <field name="name">Tax multi-company</field>
+        <field name="model_id" ref="account.model_account_tax"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_location_path_comp_rule">
+        <field name="name">stock_location_path multi-company</field>
+        <field name="model_id" ref="stock.model_stock_location_path"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="sale.sale_order_report_comp_rule">
+        <field name="name">Sales Order Analysis multi-company</field>
+        <field name="model_id" ref="sale.model_sale_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account.invoice_analysis_comp_rule" model="ir.rule">
+        <field name="name">Invoice Analysis multi-company</field>
+        <field name="model_id" ref="account.model_account_invoice_report"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="mrp.mrp_routing_rule">
+        <field name="name">mrp_routing multi-company</field>
+        <field name="model_id" search="[('model','=','mrp.routing')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_picking_type_rule">
+        <field name="name">Stock Operation Type multi-company</field>
+        <field name="model_id" search="[('model','=','stock.picking.type')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|', ('warehouse_id', '=', False), '|',('warehouse_id.company_id','=',False),('warehouse_id.company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account.journal_comp_rule" model="ir.rule">
+        <field name="name">Journal multi-company</field>
+        <field name="model_id" ref="account.model_account_journal"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account.account_comp_rule" model="ir.rule">
+        <field name="name">Account multi-company</field>
+        <field name="model_id" ref="account.model_account_account"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="mrp.mrp_workcenter_rule">
+        <field name="name">mrp_workcenter multi-company</field>
+        <field name="model_id" search="[('model','=','mrp.workcenter')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account_asset.account_asset_category_multi_company_rule" model="ir.rule">
+	    <field name="name">Account Asset Category multi-company</field>
+	    <field ref="account_asset.model_account_asset_category" name="model_id"/>
+	    <field eval="True" name="global"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+	</record>
+	
+	<record model="ir.rule" id="crm.opp_report_multi_company">
+	    <field name="name">Opportunity Analysis multi-company</field>
+	    <field name="model_id" ref="crm.model_crm_opportunity_report"/>
+	    <field eval="True" name="global"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock.stock_warehouse_comp_rule">
+        <field name="name">Warehouse multi-company</field>
+        <field name="model_id" ref="stock.model_stock_warehouse"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="l10n_ar_afipws.afipws_certificate_multi_company_rule" model="ir.rule">
+	    <field name="name">Afipws Certificate Multi-company</field>
+	    <field name="model_id" ref="l10n_ar_afipws.model_afipws_certificate"/>
+	    <field eval="True" name="perm_read"/>
+	    <field eval="True" name="perm_write"/>
+	    <field eval="True" name="perm_create"/>
+	    <field eval="True" name="perm_unlink"/>
+	    <field name="domain_force">[('alias_id.company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account_check.account_check_operation_rule" model="ir.rule">
+        <field name="name">Check Operation Multi-Company</field>
+        <field name="model_id" ref="account_check.model_account_check_operation"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('check_id.company_id','=',False),('check_id.company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="stock_picking_rule">
+        <field name="name">stock_picking multi-company</field>
+        <field name="model_id" search="[('model','=','stock.picking')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="hr.hr_job_comp_rule" model="ir.rule">
+        <field name="name">Job multi company rule</field>
+        <field name="model_id" ref="hr.model_hr_job"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="sale.sale_order_comp_rule">
+        <field name="name">Sales Order multi-company</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="purchase.purchase_order_comp_rule">
+        <field name="name">Purchase Order multi-company</field>
+        <field name="model_id" ref="purchase.model_purchase_order"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="mrp.mrp_production_rule">
+        <field name="name">mrp_production multi-company</field>
+        <field name="model_id" search="[('model','=','mrp.production')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="mrp.mrp_bom_rule">
+        <field name="name">mrp_bom multi-company</field>
+        <field name="model_id" search="[('model','=','mrp.bom')]" model="ir.model"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record model="ir.rule" id="l10n_ar_account_vat_ledger.multi_company_vat_ledger">
+	    <field name="name">Vat Ledger Multi Company</field>
+	    <field name="model_id" ref="l10n_ar_account_vat_ledger.model_account_vat_ledger"/>
+	    <field name="global" eval="True"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+	</record>
+	
+	<record id="account.invoice_comp_rule" model="ir.rule">
+        <field name="name">Invoice multi-company</field>
+        <field name="model_id" ref="account.model_account_invoice"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="hr.hr_dept_comp_rule" model="ir.rule">
+        <field name="name">Department multi company rule</field>
+        <field name="model_id" ref="hr.model_hr_department"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="analytic.analytic_comp_rule" model="ir.rule">
+        <field name="name">Analytic multi company rule</field>
+        <field name="model_id" ref="analytic.model_account_analytic_account"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+    
+    <record id="account_check.account_check_rule" model="ir.rule">
+	    <field name="name">Check Multi-Company</field>
+	    <field name="model_id" ref="account_check.model_account_check"/>
+	    <field eval="True" name="global"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+	</record>
+	
+	<record model="ir.rule" id="sales_team.sale_team_comp_rule">
+	    <field name="name">Sales Channel multi-company</field>
+	    <field name="model_id" ref="sales_team.model_crm_team"/>
+	    <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+	</record>
+	
+	<record id="account_asset.account_asset_asset_multi_company_rule" model="ir.rule">
+        <field name="name">Account Asset multi-company</field>
+        <field ref="account_asset.model_account_asset_asset" name="model_id"/>
+        <field eval="True" name="global"/>
+        <field name="domain_force">['|',('company_id','=',False),('company_id','in',user.company_ids.ids)]</field>
+    </record>
+</odoo>
+
