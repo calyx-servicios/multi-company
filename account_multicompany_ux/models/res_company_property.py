@@ -99,7 +99,7 @@ class ResCompanyProperty(models.Model):
 
         company_properties = self._get_companies()
         action_read = self.env["ir.actions.actions"]._for_xml_id(
-            'account_multicompany_ux_calyx.action_res_company_property')
+            'account_multicompany_ux.action_res_company_property')
         # do this because raise an error if came from a view
         #  with group_by activated
         ctx = self._context.copy()
